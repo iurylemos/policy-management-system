@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Apolice } from "@/src/shared/interfaces/apolice.interface";
 import { ApoliceTable } from "@/src/shared/interfaces/apoliceTable.interface";
+import Link from "next/link";
 
 const ApolicePage: React.FC = (): JSX.Element => {
   const [apolices, setApolices] = useState<Apolice[]>([]);
@@ -32,7 +33,7 @@ const ApolicePage: React.FC = (): JSX.Element => {
     fetchData();
   }, []);
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: number): Promise<void> => {
     try {
       await fetch(`/api/apolice/${id}`, { method: "DELETE" });
       fetchData(); // Refresh data after delete
@@ -43,7 +44,19 @@ const ApolicePage: React.FC = (): JSX.Element => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold text-center mb-8">Apolices</h1>
+      <div className="flex flex-row gap-4 mb-8 justify-between">
+        <h1 className="text-3xl font-bold text-center">Apolices</h1>
+        <div className="flex flex-row">
+          <Link href="/apolice/form">
+            <button
+              className="border border-black p-2 border-solid rounded-lg leading-5 bg-white font-bold"
+              type="button"
+            >
+              Criar
+            </button>
+          </Link>
+        </div>
+      </div>
       {apolices.map((apolice) => (
         <div
           key={apolice.id}
