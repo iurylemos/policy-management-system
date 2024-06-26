@@ -18,9 +18,9 @@ const ApolicePage: React.FC = (): JSX.Element => {
         numero: it.numero,
         segurado: {
           ...it.segurado,
-          cpf_cnpj: it.segurado.cpfCnpj,
+          cpfCnpj: it.segurado.cpfCnpj,
         },
-        valor_premio: it.valorPremio,
+        valorPremio: it.valorPremio,
       }));
 
       setApolices(dataApolice);
@@ -68,7 +68,7 @@ const ApolicePage: React.FC = (): JSX.Element => {
             </p>
             <p className="text-lg font-semibold">
               Valor do Prêmio:{" "}
-              <span className="font-normal">R$ {apolice.valor_premio}</span>
+              <span className="font-normal">R$ {apolice.valorPremio}</span>
             </p>
           </div>
           <div className="mb-4">
@@ -82,7 +82,7 @@ const ApolicePage: React.FC = (): JSX.Element => {
             </p>
             <p className="text-lg">
               CPF/CNPJ:{" "}
-              <span className="font-normal">{apolice.segurado.cpf_cnpj}</span>
+              <span className="font-normal">{apolice.segurado.cpfCnpj}</span>
             </p>
           </div>
           <div className="mb-4">

@@ -23,13 +23,13 @@ const ApolicePage: React.FC<ApoliceProps> = ({ apolice }) => {
       <h1 className="text-2xl font-bold mb-4">Apolice Details</h1>
       <div className="mb-4">
         <h2 className="text-xl font-semibold">Número: {apolice.numero}</h2>
-        <p className="text-lg">Valor do Prêmio: R$ {apolice.valor_premio}</p>
+        <p className="text-lg">Valor do Prêmio: R$ {apolice.valorPremio}</p>
       </div>
       <div className="mb-4">
         <h2 className="text-xl font-semibold">Segurado:</h2>
         <p className="text-lg">Nome: {apolice.segurado.nome}</p>
         <p className="text-lg">Email: {apolice.segurado.email}</p>
-        <p className="text-lg">CPF/CNPJ: {apolice.segurado.cpf_cnpj}</p>
+        <p className="text-lg">CPF/CNPJ: {apolice.segurado.cpfCnpj}</p>
       </div>
       <div className="mb-4">
         <h2 className="text-xl font-semibold">Coberturas:</h2>

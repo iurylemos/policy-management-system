@@ -4,11 +4,16 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
-  const { numero, valorPremio, segurado, coberturas } = await req.json();
+  const body = await req.json();
+  console.log("req.json()", body);
+  const { numero, valorPremio, segurado, coberturas } = body;
 
   // Ensure req.body is parsed correctly
   if (!numero || !valorPremio || !segurado || !coberturas) {
-    return NextResponse.json({ error: "Missing required fields" });
+    return NextResponse.json(
+      { error: "Missing required fields" },
+      { status: 404 }
+    );
   }
 
   try {
@@ -33,6 +38,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(newApolice, { status: 200 });
   } catch (error) {
+    console.log("error", error);
     return NextResponse.json(
       { error: "Unable to create apolice" },
       { status: 500 }

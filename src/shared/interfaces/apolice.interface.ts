@@ -1,7 +1,7 @@
 export interface Apolice {
   id?: number;
   numero: number;
-  valor_premio: number;
+  valorPremio: number;
   segurado: Segurado;
   coberturas: Cobertura[];
 }
@@ -9,7 +9,7 @@ export interface Apolice {
 interface Segurado {
   nome: string;
   email: string;
-  cpf_cnpj: string;
+  cpfCnpj: string;
 }
 
 interface Cobertura {

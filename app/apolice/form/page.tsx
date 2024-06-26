@@ -25,11 +25,11 @@ const ApoliceFormPage: React.FC<FormProps> = ({ apolice }): JSX.Element => {
       coberturas: [{ nome: "", valor: 0 }],
       numero: 0,
       segurado: {
-        cpf_cnpj: "",
+        cpfCnpj: "",
         email: "",
         nome: "",
       },
-      valor_premio: 0,
+      valorPremio: 0,
     },
   });
   const { fields, append, remove } = useFieldArray({
@@ -41,10 +41,10 @@ const ApoliceFormPage: React.FC<FormProps> = ({ apolice }): JSX.Element => {
   useEffect(() => {
     if (apolice) {
       setValue("numero", apolice.numero);
-      setValue("valor_premio", apolice.valor_premio);
+      setValue("valorPremio", apolice.valorPremio);
       setValue("segurado.nome", apolice.segurado.nome);
       setValue("segurado.email", apolice.segurado.email);
-      setValue("segurado.cpf_cnpj", apolice.segurado.cpf_cnpj);
+      setValue("segurado.cpfCnpj", apolice.segurado.cpfCnpj);
       setValue("coberturas", apolice.coberturas); // Corrected here
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -64,14 +64,18 @@ const ApoliceFormPage: React.FC<FormProps> = ({ apolice }): JSX.Element => {
         });
         router.push("/"); // Redirect to homepage after update
       } else {
-        await fetch("/api/apolice", {
+        const resp = await fetch("/api/apolice", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         });
+
+        const val = await resp.json();
+
         reset(); // Reset form after create
+        router.push("/apolice");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -106,11 +110,11 @@ const ApoliceFormPage: React.FC<FormProps> = ({ apolice }): JSX.Element => {
         <input
           type="number"
           step="0.01"
-          {...register("valor_premio")}
+          {...register("valorPremio")}
           className="w-full px-3 py-2 border rounded-lg"
         />
-        {errors.valor_premio && (
-          <p className="text-red-500">{errors.valor_premio.message}</p>
+        {errors.valorPremio && (
+          <p className="text-red-500">{errors.valorPremio.message}</p>
         )}
       </div>
 
@@ -141,12 +145,12 @@ const ApoliceFormPage: React.FC<FormProps> = ({ apolice }): JSX.Element => {
         <div className="mb-4">
           <label className="block text-lg font-semibold mb-2">CPF/CNPJ:</label>
           <input
-            {...register("segurado.cpf_cnpj")}
+            {...register("segurado.cpfCnpj")}
             placeholder="CPF/CNPJ"
             className="w-full px-3 py-2 border rounded-lg"
           />
-          {errors.segurado?.cpf_cnpj && (
-            <p className="text-red-500">{errors.segurado.cpf_cnpj.message}</p>
+          {errors.segurado?.cpfCnpj && (
+            <p className="text-red-500">{errors.segurado.cpfCnpj.message}</p>
           )}
         </div>
       </div>
