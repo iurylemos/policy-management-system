@@ -37,6 +37,8 @@ export async function POST(req: NextRequest) {
       { error: "Unable to create apolice" },
       { status: 500 }
     );
+  } finally {
+    await prisma.$disconnect();
   }
 }
 
@@ -52,6 +54,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(apolices, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Error to get data" }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
   }
 }
 
