@@ -10,7 +10,7 @@ const ContentProvider: React.FC<ContentProviderProps> = ({
   children,
 }): JSX.Element => {
   return (
-    <div className="relative min-h-screen md:flex">
+    <div className="relative min-h-screen md:flex bg-gray-200">
       {/* <!-- mobile navbar --> */}
       <div className="bg-indigo-800 text-gray-100 flex justify-between md:hidden">
         {/* <!-- logo --> */}
@@ -40,7 +40,7 @@ const ContentProvider: React.FC<ContentProviderProps> = ({
       <Sidebar />
 
       {/* <!-- main content --> */}
-      <div className="flex-1 p-4 bg-gray-200 md:p-10">{children}</div>
+      <div className="flex-1 p-4 md:p-10">{children}</div>
     </div>
   );
 };

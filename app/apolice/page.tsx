@@ -60,7 +60,7 @@ const ApolicePage: React.FC = (): JSX.Element => {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg">
       <div className="flex flex-row gap-4 mb-8 justify-between">
-        <h1 className="text-4xl font-bold text-center">Apolices</h1>
+        <h1 className="text-4xl font-bold text-center">Apólices</h1>
         <div className="flex flex-row">
           <Link href="/apolice/create">
             <button
@@ -122,7 +122,7 @@ const ApolicePage: React.FC = (): JSX.Element => {
               {apolice.id ? (
                 <div className="flex items-center gap-4 flex-col w-full lg:flex-row lg:w-auto">
                   <button
-                    className="flex select-none items-center gap-3 rounded-lg bg-indigo-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-indigo-500/20 transition-all hover:shadow-lg hover:shadow-indigo-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none w-full justify-center lg:w-auto"
+                    className="flex select-none items-center gap-3 rounded-lg bg-amber-700 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-amber-700/20 transition-all hover:shadow-lg hover:shadow-indigo-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none w-full justify-center lg:w-auto"
                     type="button"
                     data-ripple-light="true"
                   >
@@ -158,7 +158,7 @@ const ApolicePage: React.FC = (): JSX.Element => {
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        d="M11.48 3.499a.562.562 0 0 1 1.04 0l7.379 14.916c.194.392-.086.836-.52.836H4.621c-.434 0-.714-.444-.52-.836l7.379-14.916Z"
+                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
                       />
                     </svg>
                     Detalhes
