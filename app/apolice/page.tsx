@@ -47,7 +47,7 @@ const ApolicePage: React.FC = (): JSX.Element => {
     try {
       const resp = await fetch(`/api/apolice/${id}`, { method: "DELETE" });
       await resp.json();
-      fetchData(page);
+      await fetchData(page);
     } catch (error) {
       console.error("Error deleting apolice:", error);
     }
@@ -185,7 +185,7 @@ const ApolicePage: React.FC = (): JSX.Element => {
                     </svg>
                   </button>
                   <button
-                    className="flex select-none items-center gap-3 rounded-lg border border-indigo-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-indigo-500 transition-all hover:opacity-75 focus:ring focus:ring-indigo-200 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none w-full justify-center lg:w-auto"
+                    className="flex select-none items-center gap-3 rounded-lg border border-red-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-red-500 transition-all hover:opacity-75 focus:ring focus:ring-red-200 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none w-full justify-center lg:w-auto"
                     type="button"
                     data-ripple-dark="true"
                     onClick={() => handleDelete(apolice.id!)}

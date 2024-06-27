@@ -43,7 +43,7 @@ const Sidebar: React.FC = (): JSX.Element => {
             className={`py-2.5 px-4 rounded transition duration-200 hover:bg-indigo-700 hover:text-white flex flex-row gap-3 ${
               (route.path !== "/" && pathname.includes(route.path)) ||
               pathname === route.path
-                ? "bg-indigo-700 pointer-events-none"
+                ? "bg-indigo-700"
                 : "bg-transparent"
             } my-1`}
           >

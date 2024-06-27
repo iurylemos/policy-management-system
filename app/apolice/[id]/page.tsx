@@ -7,14 +7,17 @@ import { Apolice } from "@/src/shared/interfaces/apolice.interface";
 import { apoliceSchema } from "@/src/client/lib/yup/schemas/apolice.schema";
 import { usePathname, useRouter } from "next/navigation";
 import { routerUtil } from "@/src/client/utils/router.util";
+import Loading from "@/src/client/components/atoms/Loading";
 
 const ApoliceFormPage: React.FC = (): JSX.Element => {
   const [apolice, setApolice] = useState<Apolice | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const pathname = usePathname();
   const router = useRouter();
 
   const getApoliceById = async (apoliceId: string) => {
     try {
+      setLoading(true);
       const resp = await fetch(
         `/api/apolice?${new URLSearchParams({
           id: apoliceId,
@@ -24,9 +27,10 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
         }
       );
       const data = (await resp.json()) as Apolice;
-      console.log("data", data);
+      setLoading(false);
       setApolice(data);
     } catch (error) {
+      setLoading(false);
       console.log("error", error);
     }
   };
@@ -232,6 +236,7 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
       >
         {apolice ? "Atualizar" : "Criar"}
       </button>
+      {loading ? <Loading /> : <></>}
     </form>
   );
 };
