@@ -50,6 +50,13 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    const pageParam = req.nextUrl.searchParams.get("page") || "1";
+    const pageSizeParam = req.nextUrl.searchParams.get("pageSize") || "10";
+
+    const page = Number(pageParam);
+    const pageSize = Number(pageSizeParam);
+    const skip = (page - 1) * pageSize;
+
     const idParams = req.nextUrl.searchParams.get("id");
     if (idParams) {
       const apolice = await prisma.apolice.findUnique({
@@ -65,14 +72,29 @@ export async function GET(req: NextRequest) {
       return NextResponse.json(apolice, { status: 200 });
     }
 
-    const apolices = await prisma.apolice.findMany({
-      include: {
-        segurado: true,
-        coberturas: true,
-      },
-    });
+    const [totalItems, apolices] = await prisma.$transaction([
+      prisma.apolice.count(),
+      prisma.apolice.findMany({
+        include: {
+          segurado: true,
+          coberturas: true,
+        },
+        skip,
+        take: pageSize,
+      }),
+    ]);
 
-    return NextResponse.json(apolices, { status: 200 });
+    const totalPages = Math.ceil(totalItems / pageSize);
+
+    return NextResponse.json(
+      {
+        content: apolices,
+        page,
+        totalItens: totalItems,
+        totalPages,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     return NextResponse.json({ error: "Error to get data" }, { status: 500 });
   } finally {
