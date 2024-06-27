@@ -8,6 +8,7 @@ import { apoliceSchema } from "@/src/client/lib/yup/schemas/apolice.schema";
 import { usePathname, useRouter } from "next/navigation";
 import { routerUtil } from "@/src/client/utils/router.util";
 import Loading from "@/src/client/components/atoms/Loading";
+import { toast } from "react-toastify";
 
 const ApoliceFormPage: React.FC = (): JSX.Element => {
   const [apolice, setApolice] = useState<Apolice | null>(null);
@@ -15,7 +16,7 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const getApoliceById = async (apoliceId: string) => {
+  const getApoliceById = async (apoliceId: string): Promise<void> => {
     try {
       setLoading(true);
       const resp = await fetch(
@@ -84,14 +85,18 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
   ): Promise<void> => {
     try {
       if (apolice) {
-        await fetch(`/api/apolice?id=${apolice.id}`, {
+        const resp = await fetch(`/api/apolice?id=${apolice.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         });
-        router.push("/"); // Redirect to homepage after update
+        await resp.json();
+
+        toast.success("Apólice atualizada com sucesso", {
+          onClose: () => router.push("/"),
+        });
       } else {
         const resp = await fetch("/api/apolice", {
           method: "POST",
@@ -103,10 +108,13 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
 
         await resp.json();
 
-        reset(); // Reset form after create
-        router.push("/apolice");
+        reset();
+        toast.success("Apólice criada com sucesso", {
+          onClose: () => router.push("/apolice"),
+        });
       }
     } catch (error) {
+      toast.error("Apólice com error");
       console.error("Error:", error);
     }
   };

@@ -11,13 +11,10 @@ const ContentProvider: React.FC<ContentProviderProps> = ({
 }): JSX.Element => {
   return (
     <div className="relative min-h-screen md:flex bg-gray-200">
-      {/* <!-- mobile navbar --> */}
       <div className="bg-indigo-800 text-gray-100 flex justify-between md:hidden">
-        {/* <!-- logo --> */}
         <Link href="/" className="block p-4 text-white font-bold">
           Gerenciador de Apólices
         </Link>
-        {/* <!-- mobile menu --> */}
         <button className="mobile-menu-btn p-4 focus:outline-none focus:bg-gray-700">
           <svg
             className="w-6 h-6"
@@ -35,11 +32,7 @@ const ContentProvider: React.FC<ContentProviderProps> = ({
           </svg>
         </button>
       </div>
-
-      {/* <!-- sidebar --> */}
       <Sidebar />
-
-      {/* <!-- main content --> */}
       <div className="flex-1 p-4 md:p-10">{children}</div>
     </div>
   );

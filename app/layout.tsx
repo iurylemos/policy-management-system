@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
-import ContentProvider from "@/src/client/providers/content.provider";
+import SystemProvider from "@/src/client/providers/system.provider";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
@@ -19,7 +19,7 @@ const RootLayout: React.FC<
   return (
     <html lang="pt-br">
       <body className={openSans.className}>
-        <ContentProvider>{children}</ContentProvider>
+        <SystemProvider>{children}</SystemProvider>
       </body>
     </html>
   );
