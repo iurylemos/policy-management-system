@@ -3,7 +3,7 @@ import React from "react";
 
 const Sidebar: React.FC = (): JSX.Element => {
   return (
-    <div className="sidebar bg-blue-800 text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+    <div className="sidebar bg-indigo-800 text-indigo-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
       {/* <!-- logo --> */}
       <a href="#" className="flex items-center text-white space-x-2 px-4">
         <svg
@@ -26,19 +26,19 @@ const Sidebar: React.FC = (): JSX.Element => {
       <nav>
         <Link
           href="/"
-          className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+          className="block py-2.5 px-4 rounded transition duration-200 hover:bg-indigo-700 hover:text-white"
         >
           Home
         </Link>
-        <a href="#" className="block py-2.5 px-4 rounded hover:bg-blue-700">
+        <a href="#" className="block py-2.5 px-4 rounded hover:bg-indigo-700">
           About
         </a>
-        <a href="#" className="block py-2.5 px-4 rounded hover:bg-blue-700">
+        <a href="#" className="block py-2.5 px-4 rounded hover:bg-indigo-700">
           Features
         </a>
         <Link
           href="/apolice"
-          className="block py-2.5 px-4 rounded hover:bg-blue-700"
+          className="block py-2.5 px-4 rounded hover:bg-indigo-700"
         >
           Apólices
         </Link>

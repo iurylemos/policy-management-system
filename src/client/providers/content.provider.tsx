@@ -12,7 +12,7 @@ const ContentProvider: React.FC<ContentProviderProps> = ({
   return (
     <div className="relative min-h-screen md:flex">
       {/* <!-- mobile navbar --> */}
-      <div className="bg-gray-800 text-gray-100 flex justify-between md:hidden">
+      <div className="bg-indigo-800 text-gray-100 flex justify-between md:hidden">
         {/* <!-- logo --> */}
         <Link href="/" className="block p-4 text-white font-bold">
           Gerenciador de Apólices

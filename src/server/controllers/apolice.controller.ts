@@ -50,6 +50,21 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    const idParams = req.nextUrl.searchParams.get("id");
+    if (idParams) {
+      const apolice = await prisma.apolice.findUnique({
+        where: {
+          id: Number(idParams),
+        },
+        include: {
+          coberturas: true,
+          segurado: true,
+        },
+      });
+
+      return NextResponse.json(apolice, { status: 200 });
+    }
+
     const apolices = await prisma.apolice.findMany({
       include: {
         segurado: true,

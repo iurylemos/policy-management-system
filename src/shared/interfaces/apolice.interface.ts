@@ -2,6 +2,7 @@ export interface Apolice {
   id?: number;
   numero: number;
   valorPremio: number;
+  seguradoId?: number;
   segurado: Segurado;
   coberturas: Cobertura[];
 }
