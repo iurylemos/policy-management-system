@@ -5,6 +5,7 @@ import { Apolice } from "@/src/shared/interfaces/apolice.interface";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Pagination from "@/src/client/components/atoms/Pagination";
+import Loading from "@/src/client/components/atoms/Loading";
 
 interface PaginatedApolices {
   content: Apolice[];
@@ -52,12 +53,12 @@ const ApolicePage: React.FC = (): JSX.Element => {
     }
   };
 
-  const handlePageChange = (newPage: number) => {
+  const handlePageChange = (newPage: number): void => {
     setPage(newPage);
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gray-100 min-h-screen rounded-lg">
+    <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg">
       <div className="flex flex-row gap-4 mb-8 justify-between">
         <h1 className="text-4xl font-bold text-center">Apolices</h1>
         <div className="flex flex-row">
@@ -73,7 +74,7 @@ const ApolicePage: React.FC = (): JSX.Element => {
         </div>
       </div>
       {loading ? (
-        <p>Loading...</p>
+        <Loading />
       ) : (
         apolices.map((apolice) => (
           <div
