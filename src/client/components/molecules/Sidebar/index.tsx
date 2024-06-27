@@ -32,7 +32,7 @@ const Sidebar: React.FC = (): JSX.Element => {
           />
         </svg>
 
-        <span className="text-2xl font-extrabold">Gerenciador de apólices</span>
+        <span className="text-2xl font-extrabold">Apólice Tool</span>
       </a>
       {/* <!-- nav --> */}
       <nav>
