@@ -40,7 +40,7 @@ const ContentProvider: React.FC<ContentProviderProps> = ({
       <Sidebar />
 
       {/* <!-- main content --> */}
-      <div className="flex-1 p-10 bg-gray-200">{children}</div>
+      <div className="flex-1 p-4 bg-gray-200 md:p-10">{children}</div>
     </div>
   );
 };
