@@ -9,6 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { routerUtil } from "@/src/client/utils/router.util";
 import Loading from "@/src/client/components/atoms/Loading";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const ApoliceFormPage: React.FC = (): JSX.Element => {
   const [apolice, setApolice] = useState<Apolice | null>(null);
@@ -19,15 +20,11 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
   const getApoliceById = async (apoliceId: string): Promise<void> => {
     try {
       setLoading(true);
-      const resp = await fetch(
+      const { data } = await axios.get<Apolice>(
         `/api/apolice?${new URLSearchParams({
           id: apoliceId,
-        }).toString()}`,
-        {
-          method: "GET",
-        }
+        }).toString()}`
       );
-      const data = (await resp.json()) as Apolice;
       setLoading(false);
       setApolice(data);
     } catch (error) {
@@ -85,28 +82,24 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
   ): Promise<void> => {
     try {
       if (apolice) {
-        const resp = await fetch(`/api/apolice?id=${apolice.id}`, {
+        await axios.put(`/api/apolice?id=${apolice.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         });
-        await resp.json();
 
         toast.success("Apólice atualizada com sucesso", {
           onClose: () => router.push("/"),
         });
       } else {
-        const resp = await fetch("/api/apolice", {
-          method: "POST",
+        await axios.post("/api/apolice", {
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         });
-
-        await resp.json();
 
         reset();
         toast.success("Apólice criada com sucesso", {

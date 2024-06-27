@@ -6,13 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Pagination from "@/src/client/components/atoms/Pagination";
 import Loading from "@/src/client/components/atoms/Loading";
-
-interface PaginatedApolices {
-  content: Apolice[];
-  page: number;
-  totalItens: number;
-  totalPages: number;
-}
+import axios from "axios";
+import { GetApolicesApi } from "@/src/shared/interfaces/api/getApolices.interface";
 
 const ApolicePage: React.FC = (): JSX.Element => {
   const [apolices, setApolices] = useState<Apolice[]>([]);
@@ -22,18 +17,24 @@ const ApolicePage: React.FC = (): JSX.Element => {
   const router = useRouter();
 
   const fetchData = async (page: number): Promise<void> => {
-    setLoading(true);
     try {
-      const resp = await fetch(`/api/apolice?page=${page}&pageSize=10`, {
-        method: "GET",
-      });
-      const data = (await resp.json()) as PaginatedApolices;
+      setLoading(true);
+      const { data } = await axios.get<GetApolicesApi>(
+        `/api/apolice?page=${page}&pageSize=10`,
+        {
+          method: "GET",
+        }
+      );
+
+      console.log("data", data);
 
       setApolices(data.content);
       setPage(data.page);
       setTotalPages(data.totalPages);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching apolices:", error);
+      setLoading(false);
     } finally {
       setLoading(false);
     }
@@ -45,8 +46,7 @@ const ApolicePage: React.FC = (): JSX.Element => {
 
   const handleDelete = async (id: number): Promise<void> => {
     try {
-      const resp = await fetch(`/api/apolice/${id}`, { method: "DELETE" });
-      await resp.json();
+      await axios.delete(`/api/apolice/${id}`);
       await fetchData(page);
     } catch (error) {
       console.error("Error deleting apolice:", error);
