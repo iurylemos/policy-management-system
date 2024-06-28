@@ -41,7 +41,7 @@ const ApolicePage: React.FC = (): JSX.Element => {
   const handleDelete = async (id: number): Promise<void> => {
     try {
       setLoading(true);
-      await axios.delete(`/api/apolice/${id}`);
+      await axios.delete(`/api/apolice?id=${id}`);
       await fetchData(page);
     } catch (error) {
       console.error("Error deleting apolice:", error);
