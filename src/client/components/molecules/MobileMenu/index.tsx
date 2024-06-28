@@ -46,6 +46,7 @@ const MobileMenu: React.FC = (): JSX.Element => {
         </Link>
         <button
           className="mobile-menu-btn p-4 focus:outline-none focus:bg-indigo-700"
+          data-testid="mobile-menu-hamburguer"
           onClick={handleOptionClick}
         >
           <svg
