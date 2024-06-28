@@ -12,7 +12,7 @@ const Loading: React.FC = (): JSX.Element => {
           <div className="absolute top-0 mt-1 w-3 h-3 rounded-full bg-indigo-500"></div>
         </div>
         <div className="text-gray-500 text-xs font-light mt-2 text-center">
-          Please wait...
+          Por favor, aguarde...
         </div>
       </div>
     </div>
