@@ -8,7 +8,7 @@ import {
 } from "@testing-library/react";
 import Pagination from "@/src/client/components/atoms/Pagination";
 
-describe("Pagination", () => {
+describe("<Pagination />", () => {
   afterEach(() => {
     cleanup();
   });

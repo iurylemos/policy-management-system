@@ -2,7 +2,7 @@ import { expect, describe, it, afterEach } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import Loading from "@/src/client/components/atoms/Loading";
 
-describe("Loading", () => {
+describe("<Loading />", () => {
   afterEach(() => {
     cleanup();
   });

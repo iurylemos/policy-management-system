@@ -14,7 +14,7 @@ vi.mock("next/navigation", () => ({
   },
 }));
 
-describe("ApolicePage", () => {
+describe("<ApolicePage />", () => {
   it("should renders a heading with Apólices name inside", () => {
     render(<ApolicePage />);
     expect(
