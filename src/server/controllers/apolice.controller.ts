@@ -165,19 +165,25 @@ export async function PUT(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
+    const id = req.nextUrl.searchParams.get("id") || null;
+
+    if (!id)
+      return NextResponse.json({ error: "ID does not found" }, { status: 404 });
+
     const apoliceId = typeof id === "string" ? parseInt(id, 10) : undefined;
 
     if (!apoliceId) {
-      return NextResponse.json({ error: "Missing apolice ID" });
+      return NextResponse.json(
+        { error: "Missing apolice ID" },
+        { status: 404 }
+      );
     }
 
     const deletedApolice = await prisma.apolice.delete({
       where: { id: apoliceId },
     });
 
-    return NextResponse.json(deletedApolice, { status: 200 });
+    return NextResponse.json(deletedApolice, { status: 201 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
