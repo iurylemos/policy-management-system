@@ -34,6 +34,6 @@ model Cobertura {
   id        Int      @id @default(autoincrement())
   nome      String
   valor     Float
-  apolice   Apolice   @relation(fields: [apoliceId], references: [id])
+  apolice   Apolice  @relation(fields: [apoliceId], references: [id], onDelete: Cascade)
   apoliceId Int
 }

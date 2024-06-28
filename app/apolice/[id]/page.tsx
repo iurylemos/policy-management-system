@@ -85,7 +85,6 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
         setLoading(true);
 
         await axios.put(`/api/apolice?id=${apolice.id}`, data, {
-          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
@@ -97,11 +96,10 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
       } else {
         setLoading(true);
 
-        await axios.post("/api/apolice", {
+        await axios.post("/api/apolice", data, {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
         });
 
         reset();

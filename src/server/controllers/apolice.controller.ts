@@ -179,6 +179,12 @@ export async function DELETE(req: NextRequest) {
       );
     }
 
+    await prisma.cobertura.deleteMany({
+      where: {
+        apoliceId: apoliceId,
+      },
+    });
+
     const deletedApolice = await prisma.apolice.delete({
       where: { id: apoliceId },
     });
