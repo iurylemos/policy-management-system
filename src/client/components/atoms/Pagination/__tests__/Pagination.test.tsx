@@ -6,9 +6,9 @@ import {
   waitFor,
   cleanup,
 } from "@testing-library/react";
-import PaginationPage from "@/src/client/components/atoms/Pagination";
+import Pagination from "@/src/client/components/atoms/Pagination";
 
-describe("PaginationPage", () => {
+describe("Pagination", () => {
   afterEach(() => {
     cleanup();
   });
@@ -23,7 +23,7 @@ describe("PaginationPage", () => {
     };
 
     render(
-      <PaginationPage
+      <Pagination
         currentPage={props.currentPage}
         onPageChange={props.onPageChange}
         totalPages={props.totalPages}
@@ -51,7 +51,7 @@ describe("PaginationPage", () => {
     };
 
     render(
-      <PaginationPage
+      <Pagination
         currentPage={props.currentPage}
         onPageChange={props.onPageChange}
         totalPages={props.totalPages}
