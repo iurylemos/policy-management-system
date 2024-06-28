@@ -82,16 +82,15 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
   ): Promise<void> => {
     try {
       if (apolice) {
-        await axios.put(`/api/apolice?id=${apolice.id}`, {
+        await axios.put(`/api/apolice?id=${apolice.id}`, data, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
         });
 
         toast.success("Apólice atualizada com sucesso", {
-          onClose: () => router.push("/"),
+          onClose: () => router.push("/apolice"),
         });
       } else {
         await axios.post("/api/apolice", {

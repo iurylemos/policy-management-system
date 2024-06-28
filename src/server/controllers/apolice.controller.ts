@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { Cobertura } from "@/src/shared/interfaces/apolice.interface";
 
 const prisma = new PrismaClient();
 
@@ -103,16 +104,33 @@ export async function GET(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
+    const id = req.nextUrl.searchParams.get("id") || null;
+
+    if (!id) return NextResponse.json({ error: "ID does not found" });
 
     const apoliceId = typeof id === "string" ? parseInt(id, 10) : undefined;
     const body = await req.json();
     const { numero, valorPremio, segurado, coberturas } = body;
 
-    if (!apoliceId || !numero || !valorPremio || !segurado || !coberturas) {
-      return NextResponse.json({ error: "Missing required fields" });
+    if (
+      !apoliceId ||
+      !numero ||
+      !valorPremio ||
+      !segurado ||
+      !coberturas ||
+      !Array.isArray(coberturas)
+    ) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 404 }
+      );
     }
+
+    // ensure insert the data right
+    const coverages: Cobertura[] = coberturas.map((it: Cobertura) => ({
+      nome: it.nome,
+      valor: it.valor,
+    }));
 
     const updatedApolice = await prisma.apolice.update({
       where: { id: apoliceId },
@@ -125,7 +143,7 @@ export async function PUT(req: NextRequest) {
         coberturas: {
           deleteMany: {},
           createMany: {
-            data: coberturas,
+            data: coverages,
           },
         },
       },
@@ -135,7 +153,7 @@ export async function PUT(req: NextRequest) {
       },
     });
 
-    return NextResponse.json(updatedApolice, { status: 200 });
+    return NextResponse.json(updatedApolice, { status: 201 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

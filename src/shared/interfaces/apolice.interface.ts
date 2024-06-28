@@ -13,7 +13,7 @@ interface Segurado {
   cpfCnpj: string;
 }
 
-interface Cobertura {
+export interface Cobertura {
   nome: string;
   valor: number;
 }
