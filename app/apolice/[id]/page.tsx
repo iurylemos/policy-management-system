@@ -82,6 +82,8 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
   ): Promise<void> => {
     try {
       if (apolice) {
+        setLoading(true);
+
         await axios.put(`/api/apolice?id=${apolice.id}`, data, {
           method: "PUT",
           headers: {
@@ -93,6 +95,8 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
           onClose: () => router.push("/apolice"),
         });
       } else {
+        setLoading(true);
+
         await axios.post("/api/apolice", {
           headers: {
             "Content-Type": "application/json",
@@ -108,6 +112,8 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
     } catch (error) {
       toast.error("Apólice com error");
       console.error("Error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 

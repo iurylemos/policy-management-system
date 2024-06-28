@@ -20,21 +20,14 @@ const ApolicePage: React.FC = (): JSX.Element => {
     try {
       setLoading(true);
       const { data } = await axios.get<GetApolicesApi>(
-        `/api/apolice?page=${page}&pageSize=10`,
-        {
-          method: "GET",
-        }
+        `/api/apolice?page=${page}&pageSize=10`
       );
-
-      console.log("data", data);
 
       setApolices(data.content);
       setPage(data.page);
       setTotalPages(data.totalPages);
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching apolices:", error);
-      setLoading(false);
     } finally {
       setLoading(false);
     }
