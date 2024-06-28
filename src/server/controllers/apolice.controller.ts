@@ -5,19 +5,18 @@ import { Cobertura } from "@/src/shared/interfaces/apolice.interface";
 const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
-  const body = await req.json();
-  console.log("req.json()", body);
-  const { numero, valorPremio, segurado, coberturas } = body;
-
-  // Ensure req.body is parsed correctly
-  if (!numero || !valorPremio || !segurado || !coberturas) {
-    return NextResponse.json(
-      { error: "Missing required fields" },
-      { status: 404 }
-    );
-  }
-
   try {
+    const body = await req.json();
+    const { numero, valorPremio, segurado, coberturas } = body;
+
+    // Ensure req.body is parsed correctly
+    if (!numero || !valorPremio || !segurado || !coberturas) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 404 }
+      );
+    }
+
     const newApolice = await prisma.apolice.create({
       data: {
         numero,
