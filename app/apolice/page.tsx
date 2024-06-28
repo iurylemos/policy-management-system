@@ -8,6 +8,7 @@ import Pagination from "@/src/client/components/atoms/Pagination";
 import Loading from "@/src/client/components/atoms/Loading";
 import axios from "axios";
 import { GetApolicesApi } from "@/src/shared/interfaces/api/getApolices.interface";
+import { toast } from "react-toastify";
 
 const ApolicePage: React.FC = (): JSX.Element => {
   const [apolices, setApolices] = useState<Apolice[]>([]);
@@ -39,10 +40,14 @@ const ApolicePage: React.FC = (): JSX.Element => {
 
   const handleDelete = async (id: number): Promise<void> => {
     try {
+      setLoading(true);
       await axios.delete(`/api/apolice/${id}`);
       await fetchData(page);
     } catch (error) {
       console.error("Error deleting apolice:", error);
+      toast.error("Erro ao deletar, tente novamente mais tarde");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,11 +58,11 @@ const ApolicePage: React.FC = (): JSX.Element => {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg">
       <div className="flex flex-row gap-4 mb-8 justify-between">
-        <h1 className="text-4xl font-bold text-center">Apólices</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-center">Apólices</h1>
         <div className="flex flex-row">
           <Link href="/apolice/create">
             <button
-              className="group relative h-12 w-28 md:w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white"
+              className="border-solid border-green-600 border group relative h-[2.5rem] md:h-12 w-28 md:w-48 overflow-hidden rounded-2xl bg-transparent hover:bg-green-600 hover:text-white text-lg font-bold text-green-600"
               type="button"
             >
               Criar

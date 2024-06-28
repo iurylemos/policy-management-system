@@ -20,13 +20,13 @@ const Welcome: React.FC = (): JSX.Element => {
           </p>
           <a
             href="#"
-            className="inline-block py-2 px-5 text-lg bg-gray-400 rounded text-black font-semibold hover:bg-gray-200 mr-2"
+            className="w-full md:w-auto inline-block py-2 px-5 text-lg bg-gray-400 rounded text-black font-semibold hover:bg-gray-200 mr-2"
           >
             Saber Mais
           </a>
           <Link
             href="/apolice/create"
-            className="mt-2 mb:mt-0 inline-block py-2 px-5 text-lg font-semibold bg-yellow-500 text-black rounded hover:bg-yellow-300"
+            className="w-full md:w-auto mt-2 mb:mt-0 inline-block py-2 px-5 text-lg font-semibold bg-yellow-500 text-black rounded hover:bg-yellow-300"
           >
             Criar Apólice
           </Link>
