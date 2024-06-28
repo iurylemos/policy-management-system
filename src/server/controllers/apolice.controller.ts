@@ -43,8 +43,6 @@ export async function POST(req: NextRequest) {
       { error: "Unable to create apolice" },
       { status: 500 }
     );
-  } finally {
-    await prisma.$disconnect();
   }
 }
 
@@ -96,9 +94,10 @@ export async function GET(req: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    return NextResponse.json({ error: "Error to get data" }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
+    return NextResponse.json(
+      { error, message: "Error to get data" },
+      { status: 500 }
+    );
   }
 }
 
@@ -143,8 +142,6 @@ export async function PUT(req: NextRequest) {
       { error: "Unable to update apolice" },
       { status: 500 }
     );
-  } finally {
-    await prisma.$disconnect();
   }
 }
 
@@ -169,7 +166,5 @@ export async function DELETE(req: NextRequest) {
       { error: "Unable to delete apolice" },
       { status: 500 }
     );
-  } finally {
-    await prisma.$disconnect();
   }
 }
