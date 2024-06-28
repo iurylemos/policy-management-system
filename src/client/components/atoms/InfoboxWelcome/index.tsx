@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const InfoBoxWelcome: React.FC = (): JSX.Element => {
   return (
-    <div className="flex justify-between py-20 px-10 gap-x-5 bg-indigo-600 text-indigo-100">
+    <div className="flex justify-between py-20 px-10 gap-x-5 bg-indigo-600 text-indigo-100 rounded-lg">
       <div className="md:w-1/2 mb-10 md:mb-0 text-center md:text-start">
         <h2 className="text-2xl md:text-4xl lg:text-6xl text-white mb-6 text-center md:text-left">
           Bem vindo ao Gerenciador de Apólices!

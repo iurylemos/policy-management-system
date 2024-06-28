@@ -7,14 +7,14 @@ import ApoliceImage05 from "@/public/images/seguro-auto-75.jpg";
 
 const Welcome: React.FC = (): JSX.Element => {
   return (
-    <div className="grid grid-cols-1 mt-5 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 py-16 px-10 bg-indigo-600 text-indigo-200 text-center">
+    <div className="grid grid-cols-1 mt-5 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 py-16 px-10 bg-indigo-600 text-indigo-200 text-center rounded-lg">
       <div className="flex flex-col items-center">
         <div className="w-70 h-52 flex relative">
           <Image
             src={ApoliceImage03.src}
             alt="doggy 1"
             className="object-cover rounded-2xl mb-4 border-solid border-2 border-indigo-400"
-            width={320}
+            width={240}
             height={208}
           />
         </div>
