@@ -2,18 +2,21 @@ import React, { forwardRef } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
 type Props = {
-  mask: string;
   name: string;
   placeholder: string;
   className: string;
 };
 
 const InputFieldMask = forwardRef<HTMLInputElement, Props>(
-  ({ mask, name, placeholder, className }, ref): JSX.Element => {
+  ({ name, placeholder, className }, ref): JSX.Element => {
     const { control } = useFormContext();
+
+    const CPF_MASK = "000.000.000-00";
+    const CNPJ_MASK = "00.000.000/0000-00";
 
     const formatValue = (inputValue: string): string => {
       const numericValue = inputValue.replace(/\D/g, "");
+      let mask = numericValue.length > 11 ? CNPJ_MASK : CPF_MASK;
       let maskedValue = "";
       let valueIndex = 0;
 

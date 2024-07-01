@@ -15,7 +15,7 @@ import { routerUtil } from "@/src/client/utils/router.util";
 import Loading from "@/src/client/components/atoms/Loading";
 import { toast } from "react-toastify";
 import axios from "axios";
-import InputFieldMask from "@/src/client/components/organisms/InputFieldMask";
+import InputFieldMaskCPFOrCNPJ from "@/src/client/components/organisms/InputFieldMaskCPFOrCNPJ";
 import InputFieldMaskCurrency from "@/src/client/components/organisms/InputFieldMaskCurrency";
 
 const ApoliceFormPage: React.FC = (): JSX.Element => {
@@ -195,8 +195,7 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
             <label className="block text-lg font-semibold mb-2">
               CPF/CNPJ:
             </label>
-            <InputFieldMask
-              mask="000.000.000-00"
+            <InputFieldMaskCPFOrCNPJ
               name="segurado.cpfCnpj"
               placeholder="CPF/CNPJ"
               className="w-full px-3 py-2 border rounded-lg"
