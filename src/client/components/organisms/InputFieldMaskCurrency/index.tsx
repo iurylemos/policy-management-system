@@ -37,9 +37,9 @@ const InputFieldMaskCurrency = forwardRef<HTMLInputElement, Props>(
           <input
             {...field}
             ref={ref}
-            value={formatCurrency(field.value * 100)}
+            value={field.value ? formatCurrency(field.value * 100) : ""}
             onChange={(event) => {
-              const inputValue = event.target.value;
+              const inputValue = event.target.value.replace(/[^\d]/g, ""); // Filter out non-numeric characters
               const numericValue = parseValue(inputValue);
               field.onChange(numericValue);
             }}

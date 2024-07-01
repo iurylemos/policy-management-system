@@ -7,7 +7,7 @@ type Props = {
   className: string;
 };
 
-const InputFieldMask = forwardRef<HTMLInputElement, Props>(
+const InputFieldMaskCPForCNPJ = forwardRef<HTMLInputElement, Props>(
   ({ name, placeholder, className }, ref): JSX.Element => {
     const { control } = useFormContext();
 
@@ -59,6 +59,6 @@ const InputFieldMask = forwardRef<HTMLInputElement, Props>(
   }
 );
 
-InputFieldMask.displayName = "InputFieldMask";
+InputFieldMaskCPForCNPJ.displayName = "InputFieldMaskCPForCNPJ";
 
-export default InputFieldMask;
+export default InputFieldMaskCPForCNPJ;
