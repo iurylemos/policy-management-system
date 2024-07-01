@@ -289,17 +289,17 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
 
         <button
           type="submit"
-          className="bg-indigo-500 text-white px-4 py-2 rounded w-full sm:w-auto mt-4"
+          className="bg-indigo-500 text-white px-4 py-2 rounded w-full sm:w-auto mt-4 text-lg"
         >
           {apolice ? (
-            <span className="flex flex-row gap-4">
+            <span className="flex flex-row gap-4 items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6"
+                className="size-7"
               >
                 <path
                   strokeLinecap="round"
@@ -310,7 +310,7 @@ const ApoliceFormPage: React.FC = (): JSX.Element => {
               Atualizar
             </span>
           ) : (
-            <span className="flex flex-row gap-4">
+            <span className="flex flex-row gap-4 items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
