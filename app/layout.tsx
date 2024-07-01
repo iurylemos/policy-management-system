@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   description: "Esse projeto foi criado para criar uma apolice e gerenciar",
 };
 
-const RootLayout: React.FC<
-  Readonly<{
-    children: React.ReactNode;
-  }>
-> = ({ children }): JSX.Element => {
+type RootLayoutProps = { children: React.ReactNode };
+
+const RootLayout: React.FC<Readonly<RootLayoutProps>> = ({
+  children,
+}): JSX.Element => {
   return (
     <html lang="pt-br">
       <body className={openSans.className}>
