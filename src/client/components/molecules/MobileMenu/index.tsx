@@ -78,8 +78,9 @@ const MobileMenu: React.FC = (): JSX.Element => {
                 <Link
                   href={route.path}
                   className={`flex flex-row gap-3 py-2 text-white no-underline md:border-none md:p-0 hover:underline ${
+                    (route.path !== "/" && pathname.includes(route.path)) ||
                     pathname === route.path
-                      ? "font-semibold pointer-events-none"
+                      ? "font-bold"
                       : ""
                   }`}
                 >
